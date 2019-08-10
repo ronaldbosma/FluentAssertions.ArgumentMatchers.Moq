@@ -44,7 +44,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy NuGet Package'
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
+    SourceFolder: '$(Build.SourcesDirectory)/Moq.ArgumentMatchers.FluentAssertions'
     Contents: '**\*.nupkg'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/Package'
     FlattenFolders: true
