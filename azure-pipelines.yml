@@ -15,7 +15,7 @@ variables:
 steps:
 - task: DotNetCoreInstaller@0
   inputs:
-    version: '2.2'
+    version: '2.2.401'
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'Build Solution - $(buildConfiguration)'
