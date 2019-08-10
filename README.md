@@ -19,6 +19,3 @@ _mock.Verify(m => m.DoSomething(Its.EquivalentTo(
     options => options.Excluding(c => c.SomeProperty)
 )));
 ```
-
-### Build
-Created with Visual Studio 2019.
