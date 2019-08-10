@@ -17,7 +17,17 @@ namespace Moq.ArgumentMatchers.FluentAssertions.Tests.Net45
         }
 
         [TestMethod]
-        public void EquivalentTo_Matches_Two_Complex_Types_With_Same_Data()
+        public void EquivalentTo_Matches_Same_Complex_Types()
+        {
+            var complexType = ComplexType.Create();
+
+            _mock.Object.DoSomething(complexType);
+
+            _mock.Verify(m => m.DoSomething(Its.EquivalentTo(complexType)));
+        }
+
+        [TestMethod]
+        public void EquivalentTo_Matches_Two_Different_Complex_Types_With_Same_Data()
         {
             var complexType = ComplexType.Create();
             var expectedComplexType = complexType.Copy();
@@ -55,6 +65,36 @@ namespace Moq.ArgumentMatchers.FluentAssertions.Tests.Net45
                 expectedComplexType,
                 options => options.Excluding(c => c.ComplexTypeProperty.IntProperty)
             )));
+        }
+
+        [TestMethod]
+        public void EquivalentTo_Matches_If_Actual_And_Expected_Are_Null()
+        {
+            _mock.Object.DoSomething(null);
+
+            _mock.Verify(m => m.DoSomething(Its.EquivalentTo<ComplexType>(null)));
+        }
+
+        [TestMethod]
+        public void EquivalentTo_Does_Not_Match_If_Actual_Object_Has_Value_And_Expected_Object_Is_Null()
+        {
+            var complexType = ComplexType.Create();
+
+            _mock.Object.DoSomething(complexType);
+
+            Action verify = () => _mock.Verify(m => m.DoSomething(Its.EquivalentTo<ComplexType>(null)));
+            verify.Should().Throw<MockException>();
+        }
+
+        [TestMethod]
+        public void EquivalentTo_Does_Not_Match_If_Actual_Object_Is_Null_And_Expected_Object_Has_Value()
+        {
+            var expectedComplexType = ComplexType.Create();
+
+            _mock.Object.DoSomething(null);
+
+            Action verify = () => _mock.Verify(m => m.DoSomething(Its.EquivalentTo(expectedComplexType)));
+            verify.Should().Throw<MockException>();
         }
     }
 }
