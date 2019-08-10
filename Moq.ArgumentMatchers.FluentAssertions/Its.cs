@@ -16,33 +16,6 @@ namespace Moq.ArgumentMatchers.FluentAssertions
         /// </summary>
         /// <typeparam name="TValue">Type of the argument to check.</typeparam>
         /// <param name="expected">The expected object to match.</param>
-        public static TValue AsExpectedObject<TValue>(this TValue expected)
-        {
-            return Its.EquivalentTo(expected);
-        }
-
-        /// <summary>
-        /// Matches any value that is equivalent to <paramref name="expected"/>.
-        /// </summary>
-        /// <typeparam name="TValue">Type of the argument to check.</typeparam>
-        /// <param name="expected">The expected object to match.</param>
-        /// <param name="config">
-        /// A reference to the <seealso cref="FluentAssertions.Equivalency.EquivalencyAssertionOptions`1"/>
-        /// configuration object that can be used to influence the way the object graphs
-        /// are compared. You can also provide an alternative instance of the <seealso cref="FluentAssertions.Equivalency.EquivalencyAssertionOptions`1"/> class.
-        /// The global defaults are determined by the <seealso cref="FluentAssertions.AssertionOptions"/> class.
-        /// </param>
-        public static TValue AsExpectedObject<TValue>(this TValue expected,
-            Func<EquivalencyAssertionOptions<TValue>, EquivalencyAssertionOptions<TValue>> config)
-        {
-            return Its.EquivalentTo(expected, config);
-        }
-
-        /// <summary>
-        /// Matches any value that is equivalent to <paramref name="expected"/>.
-        /// </summary>
-        /// <typeparam name="TValue">Type of the argument to check.</typeparam>
-        /// <param name="expected">The expected object to match.</param>
         public static TValue EquivalentTo<TValue>(TValue expected)
         {
             return EquivalentTo(expected, config => config);
