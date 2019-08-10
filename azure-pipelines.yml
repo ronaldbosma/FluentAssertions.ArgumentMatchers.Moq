@@ -13,6 +13,10 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: DotNetCoreInstaller@0
+  inputs:
+    version: '2.1.300'
+
 - script: donet restore
 
 - script: dotnet build --configuration $(buildConfiguration)
