@@ -38,3 +38,5 @@ steps:
     
 - script: dotnet test
   displayName: 'Run .NET Core Tests'
+
+- task: PublishTestResults@2 # To publish test run with 'dotnet test'
