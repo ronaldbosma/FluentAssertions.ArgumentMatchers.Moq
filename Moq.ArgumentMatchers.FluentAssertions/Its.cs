@@ -9,7 +9,7 @@ namespace Moq.ArgumentMatchers.FluentAssertions
     /// Contains helper methods that combine fuctionality of Moq and FluentAssertions
     /// to make it easier to work with complex input parameters in mocks.
     /// </summary>
-    static class Its
+    public static class Its
     {
         /// <summary>
         /// Matches any value that is equivalent to <paramref name="expected"/>.
