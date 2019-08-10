@@ -15,12 +15,15 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+# Required for NuGetCommand@2
 - task: NuGetToolInstaller@1
 
+# Required for DotNetCoreCLI@2
 - task: DotNetCoreInstaller@0
   inputs:
     version: '2.2.401'
 
+# Required for VSTest@2
 - task: VisualStudioTestPlatformInstaller@1
 
 - task: NuGetCommand@2
@@ -35,6 +38,7 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: VSTest@2
+  displayName: 'Run .NET Framework Tests'
   inputs:
     testAssemblyVer2: '**\*Tests.Net45.dll'
     platform: '$(buildPlatform)'
