@@ -17,9 +17,8 @@ steps:
   inputs:
     version: '2.1.300'
 
-- script: donet restore
-
 - script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+  displayName: 'Build Solution - $(buildConfiguration)'
 
 - script: dotnet test
+  displayName: 'Run Tests'
