@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/ronaldbosma/GitHub/_apis/build/status/ronaldbosma.Moq.ArgumentMatchers.FluentAssertions?branchName=master)](https://dev.azure.com/ronaldbosma/GitHub/_build/latest?definitionId=5&branchName=master)
+
 Moq.ArgumentMatchers.FluentAssertions
 ===
 
