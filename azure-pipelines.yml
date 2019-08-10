@@ -21,6 +21,8 @@ steps:
   inputs:
     version: '2.2.401'
 
+- task: VisualStudioTestPlatformInstaller@1
+
 - task: NuGetCommand@2
   displayName: "NuGet Restore"
   inputs:
