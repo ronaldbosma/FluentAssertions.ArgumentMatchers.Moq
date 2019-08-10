@@ -42,9 +42,22 @@ steps:
 
 - task: PublishTestResults@2 # To publish test run with 'dotnet test'	
 
+- task: CopyFiles@2
+  displayName: 'Copy NuGet Package'
+  inputs:
+    SourceFolder: '$(Build.ArtifactStagingDirectory)'
+    Contents: '**\*.nupkg'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/Package'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/Package'
+
 - task: NuGetCommand@2
   displayName: 'NuGet Push'
   inputs:
     command: push
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/Package/*.nupkg
     publishVstsFeed: 'Test'
     allowPackageConflicts: true
