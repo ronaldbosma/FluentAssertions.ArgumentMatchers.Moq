@@ -23,9 +23,6 @@ steps:
   inputs:
     version: '2.2.401'
 
-# Required for VSTest@2
-- task: VisualStudioTestPlatformInstaller@1
-
 - task: NuGetCommand@2
   displayName: "NuGet Restore"
   inputs:
@@ -38,15 +35,8 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
-  displayName: 'Run .NET Framework Tests'
-  inputs:
-    testAssemblyVer2: '**\*Tests.Net45.dll'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    
 - task: DotNetCoreCLI@2
-  displayName: 'Run .NET Core Tests'
+  displayName: 'Run Tests'
   inputs:
     command: test
     arguments: '--configuration $(buildConfiguration) --logger trx'
