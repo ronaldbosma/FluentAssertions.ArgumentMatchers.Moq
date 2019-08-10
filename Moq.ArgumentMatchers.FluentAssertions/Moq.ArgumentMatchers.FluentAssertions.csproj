@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <PackageId>Moq.ArgumentMatchers.FluentAssertions</PackageId>
     <PackageTags>netstandard;Moq;FluentAssertions</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -15,8 +15,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="5.*" />
-    <PackageReference Include="Moq" Version="4.*" />
+    <PackageReference Include="FluentAssertions" Version="[5.0.0,6)" />
+    <PackageReference Include="Moq" Version="[4.7,5)" />
   </ItemGroup>
 
 </Project>
