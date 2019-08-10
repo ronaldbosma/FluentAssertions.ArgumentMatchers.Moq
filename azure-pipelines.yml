@@ -56,6 +56,6 @@ steps:
   displayName: 'NuGet Push'
   inputs:
     command: push
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/Package/*.nupkg
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/Package/*.nupkg'
     publishVstsFeed: 'Test'
     allowPackageConflicts: true
