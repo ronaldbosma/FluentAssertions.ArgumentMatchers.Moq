@@ -5,6 +5,7 @@
     <Version>0.1.0</Version>
     <PackageId>Moq.ArgumentMatchers.FluentAssertions</PackageId>
     <PackageTags>netstandard;Moq;FluentAssertions</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Ronald Bosma</Authors>
     <Description>Contains Moq argument matchers using FluentAssertions</Description>
     <RepositoryUrl>https://github.com/ronaldbosma/Moq.ArgumentMatchers.FluentAssertions</RepositoryUrl>
