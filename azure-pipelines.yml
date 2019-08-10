@@ -37,10 +37,8 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     
-- script: dotnet test
+- script: dotnet test --logger trx
   displayName: 'Run .NET Core Tests'
-
-- task: PublishTestResults@2 # To publish test run with 'dotnet test'	
 
 - task: CopyFiles@2
   displayName: 'Copy NuGet Package'
