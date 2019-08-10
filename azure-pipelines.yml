@@ -22,6 +22,7 @@ steps:
     version: '2.2.401'
 
 - task: NuGetCommand@2
+  displayName: "NuGet Restore"
   inputs:
     restoreSolution: '$(solution)'
 
@@ -40,3 +41,10 @@ steps:
   displayName: 'Run .NET Core Tests'
 
 - task: PublishTestResults@2 # To publish test run with 'dotnet test'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet Push'
+  inputs:
+    command: push
+    publishVstsFeed: 'Test'
+    allowPackageConflicts: true
