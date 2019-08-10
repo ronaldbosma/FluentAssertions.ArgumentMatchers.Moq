@@ -1,4 +1,6 @@
 [![Build Status](https://dev.azure.com/ronaldbosma/GitHub/_apis/build/status/ronaldbosma.Moq.ArgumentMatchers.FluentAssertions?branchName=master)](https://dev.azure.com/ronaldbosma/GitHub/_build/latest?definitionId=5&branchName=master)
+[![Tests](https://img.shields.io/azure-devops/tests/ronaldbosma/GitHub/5.svg?compact_message&logo=azure-pipelines)](https://dev.azure.com/ronaldbosma/GitHub/_build/latest?definitionId=5&branchName=master)
+![Nuget](https://img.shields.io/nuget/dt/Moq.ArgumentMatchers.FluentAssertions)
 
 Moq.ArgumentMatchers.FluentAssertions
 ===
