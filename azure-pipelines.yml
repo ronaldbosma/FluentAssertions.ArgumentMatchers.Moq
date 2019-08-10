@@ -17,6 +17,10 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
+- task: DotNetCoreInstaller@0
+  inputs:
+    version: '2.2.401'
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
@@ -31,3 +35,6 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    
+- script: dotnet test
+  displayName: 'Run .NET Core Tests'
