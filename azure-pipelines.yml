@@ -56,11 +56,3 @@ steps:
   inputs:
     artifactName: Moq.ArgumentMatchers.FluentAssertions
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/Package'
-
-- task: NuGetCommand@2
-  displayName: 'NuGet Push'
-  inputs:
-    command: push
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/Package/*.nupkg'
-    publishVstsFeed: 'Test'
-    allowPackageConflicts: true
