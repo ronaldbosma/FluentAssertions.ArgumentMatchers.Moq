@@ -43,6 +43,12 @@ steps:
 - task: PublishTestResults@2 # To publish test run with 'dotnet test'
 
 - task: NuGetCommand@2
+  displayName: "NuGet Pack"
+  inputs:
+    command: pack
+    packagesToPack: '**/*.csproj'	
+
+- task: NuGetCommand@2
   displayName: 'NuGet Push'
   inputs:
     command: push
