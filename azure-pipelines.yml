@@ -37,8 +37,11 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     
-- script: dotnet test --logger trx
+- task: DotNetCoreCLI@2
   displayName: 'Run .NET Core Tests'
+  inputs:
+    command: test
+    arguments: '--configuration $(buildConfiguration)' --logger trx
 
 - task: CopyFiles@2
   displayName: 'Copy NuGet Package'
