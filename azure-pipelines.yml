@@ -46,8 +46,8 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy NuGet Package'
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '**\*.nupkg'
+    SourceFolder: '$(Build.SourcesDirectory)/**'
+    Contents: '*.nupkg'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/Package'
 
 - task: PublishBuildArtifacts@1
