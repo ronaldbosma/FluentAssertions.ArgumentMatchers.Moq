@@ -32,7 +32,7 @@ steps:
     extraProperties: |
       sonar.login=$(SonarQubeUserName)
       sonar.password=$(SonarQubePassword)
-      sonar.flex.cobertura.reportPaths="$(Build.SourcesDirectory)/TestResults/Coverage.cobertura.xml"
+      sonar.cs.opencover.reportsPaths="$(Build.SourcesDirectory)/TestResults/Coverage.opencover.xml"
     # I'm passing in the SonarQube username and password because the token doesn't seem to be send to SonarQube
 
 - task: DotNetCoreCLI@2
@@ -47,13 +47,7 @@ steps:
   inputs:
     command: test
     projects: '**/*[Tt]ests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
-
-- task: PublishCodeCoverageResults@1
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(Build.SourcesDirectory)/TestResults/Coverage.cobertura.xml'
-    failIfCoverageEmpty: true
+    arguments: '--configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
 
 - task: SonarQubeAnalyze@4
 
