@@ -46,7 +46,13 @@ steps:
   inputs:
     command: test
     projects: '**/*[Tt]ests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
+    arguments: '--configuration $(buildConfiguration) --logger trx --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Build.SourcesDirectory)/TestResults/Coverage.cobertura.xml'
+    failIfCoverageEmpty: true
 
 - task: SonarQubeAnalyze@4
 
