@@ -63,6 +63,7 @@ steps:
     buildProperties: 'VersionSuffix="$(Build.SourceVersion)"'
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
     configuration: '$(buildConfiguration)'
+    nobuild: true
 
 #- task: DotNetCoreCLI@2
 #  displayName: 'Create NuGet Package - Release Version'
