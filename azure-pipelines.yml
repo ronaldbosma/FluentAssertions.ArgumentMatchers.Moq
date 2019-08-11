@@ -60,7 +60,7 @@ steps:
   inputs:
     command: pack
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
-    arguments: '--configuration $(buildConfiguration) --no-build --version-suffix "$(Build.BuildNumber)"'
+    arguments: '--configuration $(buildConfiguration) --no-build --version-suffix "$(Build.SourceVersion)"'
 
 - task: DotNetCoreCLI@2
   displayName: 'Create NuGet Package - Release Version'
