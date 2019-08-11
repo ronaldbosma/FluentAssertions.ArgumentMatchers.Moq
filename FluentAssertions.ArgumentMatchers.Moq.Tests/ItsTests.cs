@@ -1,9 +1,7 @@
 ﻿using System;
 using AutoFixture;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-using FluentAssertions.ArgumentMatchers.Moq;
 using FluentAssertions.ArgumentMatchers.Moq.Tests.TestTools;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace FluentAssertions.ArgumentMatchers.Moq.Tests
