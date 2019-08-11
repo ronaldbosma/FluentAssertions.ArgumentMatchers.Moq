@@ -59,7 +59,7 @@ steps:
   displayName: 'Create NuGet Package - Prerelease Version'
   inputs:
     command: pack
-    buildProperties: 'VersionSuffix="test-$(Build.BuildNumber)-$(Build.SourceVersion)"'
+    buildProperties: 'VersionSuffix="$(Build.BuildNumber)"'
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages/prereleases'
     arguments: '--configuration $(buildConfiguration)'
 
