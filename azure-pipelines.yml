@@ -14,9 +14,12 @@ variables:
   sonarQubeProject: 'FluentAssertions.ArgumentMatchers.Moq'
 
 steps:
-- task: DotNetCoreInstaller@0
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk'
   inputs:
-    version: '2.2'
+    packageType: sdk
+    version: 2.2.x
+    installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: DotNetCoreCLI@2
   displayName: "NuGet Restore"
