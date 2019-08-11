@@ -60,7 +60,7 @@ steps:
   displayName: 'Create NuGet Package - Prerelease Version'
   inputs:
     command: pack
-    arguments: '--version-suffix "$(Build.SourceVersion)"'
+    versioningScheme: byBuildNumber
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
     configuration: '$(buildConfiguration)'
     nobuild: true
