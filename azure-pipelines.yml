@@ -58,14 +58,15 @@ steps:
   inputs:
     command: pack
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
-    arguments: '--no-build --version-suffix "$(Build.SourceVersion)"'
+    nobuild: true
+    arguments: '--version-suffix "$(Build.SourceVersion)"'
 
 #- task: DotNetCoreCLI@2
 #  displayName: 'Create NuGet Package - Release Version'
 #  inputs:
 #    command: pack
 #    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
-#    arguments: '--no-build'
+#    nobuild: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
