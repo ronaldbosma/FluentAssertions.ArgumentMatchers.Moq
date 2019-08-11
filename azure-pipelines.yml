@@ -24,7 +24,7 @@ steps:
     projectKey: 'FluentAssertions.ArgumentMatchers.Moq'
     projectName: 'FluentAssertions.ArgumentMatchers.Moq'
     extraProperties: |
-      sonar.login=$(SonarQubeToken)  # Some how the SonarQube service connection didn't seem to pass the token 
+      sonar.login=$(SonarQubeToken)
 #      sonar.branch.name=$(Build.SourceBranchName)  # This one unfortunately doesn't work for a developer edition
 
 - task: DotNetCoreCLI@2
