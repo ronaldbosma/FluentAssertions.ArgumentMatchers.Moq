@@ -28,6 +28,7 @@ steps:
     SonarQube: 'SonarQube'
     scannerMode: 'MSBuild'
     projectKey: 'FluentAssertions.ArgumentMatchers.Moq'
+    projectName: 'FluentAssertions.ArgumentMatchers.Moq'
     projectVersion: '$(AssemblyVersion)'
     extraProperties: sonar.branch.name=$(Build.SourceBranchName)
 
