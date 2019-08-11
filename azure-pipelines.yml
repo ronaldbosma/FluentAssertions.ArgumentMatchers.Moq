@@ -10,17 +10,11 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
   solutionName: FluentAssertions.ArgumentMatchers.Moq
   projects: '**/*.csproj'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
-# Required for NuGetCommand@2
-- task: NuGetToolInstaller@1
-
-# Required for DotNetCoreCLI@2
 - task: DotNetCoreInstaller@0
   inputs:
     version: '2.2.401'
@@ -37,18 +31,6 @@ steps:
     command: build
     projects: '$(projects)'
     arguments: '--configuration $(buildConfiguration)'
-
-#- task: NuGetCommand@2
-#  displayName: "NuGet Restore"
-#  inputs:
-#    restoreSolution: '$(solution)'
-
-#- task: VSBuild@1
-#  displayName: "Build Solution"
-#  inputs:
-#    solution: '$(solution)'
-#    platform: '$(buildPlatform)'
-#    configuration: '$(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'Run Tests'
