@@ -1,4 +1,4 @@
-﻿namespace Moq.ArgumentMatchers.FluentAssertions.Tests.TestTools
+﻿namespace FluentAssertions.ArgumentMatchers.Moq.Tests.TestTools
 {
     public interface IInterface
     {

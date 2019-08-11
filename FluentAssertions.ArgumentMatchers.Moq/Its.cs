@@ -1,9 +1,10 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Equivalency;
+using Moq;
 using System;
 using System.Diagnostics;
 
-namespace Moq.ArgumentMatchers.FluentAssertions
+namespace FluentAssertions.ArgumentMatchers.Moq
 {
     /// <summary>
     /// Contains helper methods that combine fuctionality of Moq and FluentAssertions
@@ -27,10 +28,10 @@ namespace Moq.ArgumentMatchers.FluentAssertions
         /// <typeparam name="TValue">Type of the argument to check.</typeparam>
         /// <param name="expected">The expected object to match.</param>
         /// <param name="config">
-        /// A reference to the <seealso cref="FluentAssertions.Equivalency.EquivalencyAssertionOptions`1"/>
+        /// A reference to the <seealso cref="EquivalencyAssertionOptions`1"/>
         /// configuration object that can be used to influence the way the object graphs
-        /// are compared. You can also provide an alternative instance of the <seealso cref="FluentAssertions.Equivalency.EquivalencyAssertionOptions`1"/> class.
-        /// The global defaults are determined by the <seealso cref="FluentAssertions.AssertionOptions"/> class.
+        /// are compared. You can also provide an alternative instance of the <seealso cref="EquivalencyAssertionOptions`1"/> class.
+        /// The global defaults are determined by the <seealso cref="AssertionOptions"/> class.
         /// </param>
         public static TValue EquivalentTo<TValue>(TValue expected,
             Func<EquivalencyAssertionOptions<TValue>, EquivalencyAssertionOptions<TValue>> config)
@@ -38,7 +39,7 @@ namespace Moq.ArgumentMatchers.FluentAssertions
             return Match.Create(
                 actual => AreEquivalent(actual, expected, config),
                 //this second parameter is used in error messages to display what the expression is
-                () => Its.EquivalentTo<TValue>(expected)
+                () => EquivalentTo(expected)
             );
         }
 

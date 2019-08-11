@@ -1,10 +1,12 @@
 ﻿using System;
 using AutoFixture;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq.ArgumentMatchers.FluentAssertions.Tests.TestTools;
 using FluentAssertions;
+using FluentAssertions.ArgumentMatchers.Moq;
+using FluentAssertions.ArgumentMatchers.Moq.Tests.TestTools;
+using Moq;
 
-namespace Moq.ArgumentMatchers.FluentAssertions.Tests
+namespace FluentAssertions.ArgumentMatchers.Moq.Tests
 {
     [TestClass]
     public class ItsTests
@@ -65,7 +67,7 @@ namespace Moq.ArgumentMatchers.FluentAssertions.Tests
             _mock.Object.DoSomething(complexType);
 
             _mock.Verify(m => m.DoSomething(Its.EquivalentTo(
-                expectedComplexType, 
+                expectedComplexType,
                 options => options.Excluding(c => c.ComplexTypeProperty.IntProperty)
             )));
         }

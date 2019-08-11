@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Moq.ArgumentMatchers.FluentAssertions.Tests.TestTools
+namespace FluentAssertions.ArgumentMatchers.Moq.Tests.TestTools
 {
     public class ComplexType
     {
@@ -27,15 +27,15 @@ namespace Moq.ArgumentMatchers.FluentAssertions.Tests.TestTools
         {
             return new ComplexType
             {
-                IntProperty = this.IntProperty,
-                StringProperty = this.StringProperty,
-                GuidProperty = this.GuidProperty,
+                IntProperty = IntProperty,
+                StringProperty = StringProperty,
+                GuidProperty = GuidProperty,
                 ComplexTypeProperty = new AnotherComplexType
                 {
-                    IntProperty = this.ComplexTypeProperty.IntProperty,
-                    StringProperty = this.ComplexTypeProperty.StringProperty
+                    IntProperty = ComplexTypeProperty.IntProperty,
+                    StringProperty = ComplexTypeProperty.StringProperty
                 },
-                ListProperty = this.ListProperty.Select(s => s)
+                ListProperty = ListProperty.Select(s => s)
             };
         }
     }
