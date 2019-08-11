@@ -27,9 +27,9 @@ namespace FluentAssertions.ArgumentMatchers.Moq
         /// <typeparam name="TValue">Type of the argument to check.</typeparam>
         /// <param name="expected">The expected object to match.</param>
         /// <param name="config">
-        /// A reference to the <seealso cref="EquivalencyAssertionOptions`1"/>
+        /// A reference to the <seealso cref="EquivalencyAssertionOptions{TValue}"/>
         /// configuration object that can be used to influence the way the object graphs
-        /// are compared. You can also provide an alternative instance of the <seealso cref="EquivalencyAssertionOptions`1"/> class.
+        /// are compared. You can also provide an alternative instance of the <seealso cref="EquivalencyAssertionOptions{TValue}"/> class.
         /// The global defaults are determined by the <seealso cref="AssertionOptions"/> class.
         /// </param>
         public static TValue EquivalentTo<TValue>(TValue expected,
