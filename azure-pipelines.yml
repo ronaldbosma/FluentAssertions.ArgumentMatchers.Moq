@@ -11,6 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  sonarQubeProject: 'FluentAssertions.ArgumentMatchers.Moq'
 
 steps:
 - task: DotNetCoreInstaller@0
@@ -27,8 +28,8 @@ steps:
   inputs:
     SonarQube: 'SonarQube'
     scannerMode: 'MSBuild'
-    projectKey: 'FluentAssertions.ArgumentMatchers.Moq'
-    projectName: 'FluentAssertions.ArgumentMatchers.Moq'
+    projectKey: '$(sonarQubeProject)'
+    projectName: '$(sonarQubeProject)'
     extraProperties: |
       sonar.login=$(SonarQubeUserName)
       sonar.password=$(SonarQubePassword)
