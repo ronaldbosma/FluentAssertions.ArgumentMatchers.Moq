@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
+    <VersionSuffix>test</VersionSuffix>
     <PackageId>FluentAssertions.ArgumentMatchers.Moq</PackageId>
     <PackageTags>netstandard;Moq;FluentAssertions</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -12,6 +13,7 @@
     <RepositoryType>git</RepositoryType>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>FluentAssertions.ArgumentMatchers.Moq.snk</AssemblyOriginatorKeyFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
