@@ -27,34 +27,33 @@ steps:
     command: restore
     projects: '**/*.csproj'
 
-#- task: SonarQubePrepare@4
-#  inputs:
-#    SonarQube: 'SonarQube'
-#    scannerMode: 'MSBuild'
-#    projectKey: '$(sonarQubeProject)'
-#    projectName: '$(sonarQubeProject)'
-#    extraProperties: |
-#      sonar.login=$(SonarQubeUserName)
-#      sonar.password=$(SonarQubePassword)
-#      sonar.cs.opencover.reportsPaths="$(Build.SourcesDirectory)/TestResults/Coverage.opencover.xml"
-#    # I'm passing in the SonarQube username and password because the token doesn't seem to be send to SonarQube
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'SonarQube'
+    scannerMode: 'MSBuild'
+    projectKey: '$(sonarQubeProject)'
+    projectName: '$(sonarQubeProject)'
+    extraProperties: |
+      sonar.login=$(SonarQubeUserName)
+      sonar.password=$(SonarQubePassword)
+      sonar.cs.opencover.reportsPaths="$(Build.SourcesDirectory)/TestResults/Coverage.opencover.xml"
+    # I'm passing in the SonarQube username and password because the token doesn't seem to be send to SonarQube
 
 - task: DotNetCoreCLI@2
-  displayName: "Build Solution - $(BuildConfiguration)"
+  displayName: "Build Solution"
   inputs:
     command: build
     projects: '**/*.csproj'
-    configuration: '$(buildConfiguration)'
+    arguments: '--configuration'
 
-#- task: DotNetCoreCLI@2
-#  displayName: 'Run Tests'
-#  inputs:
-#    command: test
-#    projects: '**/*[Tt]ests/*.csproj'
-#    configuration: '$(buildConfiguration)'
-#    arguments: '--logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
-#
-#- task: SonarQubeAnalyze@4
+- task: DotNetCoreCLI@2
+  displayName: 'Run Tests'
+  inputs:
+    command: test
+    projects: '**/*[Tt]ests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
+
+- task: SonarQubeAnalyze@4
 
 - task: DotNetCoreCLI@2
   displayName: 'Create NuGet Package - Prerelease Version'
@@ -62,16 +61,15 @@ steps:
     command: pack
     buildProperties: 'VersionSuffix="$(Build.SourceVersion)"'
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
-    configuration: '$(buildConfiguration)'
-    nobuild: true
+    arguments: '--configuration $(buildConfiguration)'
 
-#- task: DotNetCoreCLI@2
-#  displayName: 'Create NuGet Package - Release Version'
-#  inputs:
-#    command: pack
-#    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
-#    configuration: '$(buildConfiguration)'
-#    nobuild: true
+- task: DotNetCoreCLI@2
+  displayName: 'Create NuGet Package - Release Version'
+  inputs:
+    command: pack
+    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
+    arguments: '--configuration $(buildConfiguration)'
+    nobuild: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
