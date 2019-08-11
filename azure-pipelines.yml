@@ -23,6 +23,12 @@ steps:
     command: restore
     projects: '**/*.csproj'
 
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'SonarQube'
+    scannerMode: 'MSBuild'
+    projectKey: 'FluentAssertions.ArgumentMatchers.Moq'
+
 - task: DotNetCoreCLI@2
   displayName: "Build Solution"
   inputs:
@@ -36,6 +42,12 @@ steps:
     command: test
     projects: '**/*[Tt]ests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --logger trx'
+
+- task: SonarQubeAnalyze@4
+
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
 
 - task: CopyFiles@2
   displayName: 'Copy NuGet Package'
