@@ -60,14 +60,14 @@ steps:
   inputs:
     command: pack
     buildProperties: 'VersionSuffix="$(Build.SourceVersion)"'
-    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
+    packDirectory: '$(Build.ArtifactStagingDirectory)/packages/prereleases'
     arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'Create NuGet Package - Release Version'
   inputs:
     command: pack
-    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
+    packDirectory: '$(Build.ArtifactStagingDirectory)/packages/releases'
     arguments: '--configuration $(buildConfiguration)'
     nobuild: true
 
