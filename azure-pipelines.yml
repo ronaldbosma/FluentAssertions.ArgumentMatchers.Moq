@@ -44,7 +44,7 @@ steps:
   inputs:
     command: build
     projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'Run Tests'
@@ -55,15 +55,14 @@ steps:
 
 - task: SonarQubeAnalyze@4
 
-- task: CopyFiles@2
-  displayName: 'Copy NuGet Package'
+- task: DotNetCoreCLI@2
+  displayName: dotnet pack
   inputs:
-    SourceFolder: '$(Build.ArtifactStagingDirectory)'
-    Contents: '*.nupkg'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/Package'
+    command: pack
+    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
     artifactName: 'FluentAssertions.ArgumentMatchers.Moq'
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/Package'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/packages'
