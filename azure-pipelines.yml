@@ -21,7 +21,7 @@ steps:
 #  inputs:
 #    SonarQube: 'SonarQube'
 #    scannerMode: 'MSBuild'
-#    projectKey: '
+#    projectKey: 'FluentAssertions.ArgumentMatchers.Moq'
 #    projectName: 'FluentAssertions.ArgumentMatchers.Moq'
 #    projectVersion: '$(AssemblyVersion)'
 #    extraProperties: sonar.branch.name=$(Build.SourceBranchName)
@@ -33,7 +33,7 @@ steps:
     configMode: 'manual'
     cliProjectKey: 'FluentAssertions.ArgumentMatchers.Moq'
     cliProjectName: 'FluentAssertions.ArgumentMatchers.Moq'
-    cliSources: '.''
+    cliSources: '.'
 
 - task: DotNetCoreCLI@2
   displayName: "NuGet Restore"
