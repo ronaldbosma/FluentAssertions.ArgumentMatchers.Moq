@@ -16,7 +16,7 @@ variables:
 steps:
 - task: DotNetCoreInstaller@0
   inputs:
-    version: '2.2.401'
+    version: '2.2.x'
 
 - task: DotNetCoreCLI@2
   displayName: "NuGet Restore"
