@@ -26,18 +26,18 @@ steps:
   inputs:
     command: restore
     projects: '**/*.csproj'
-    
-- task: SonarQubePrepare@4
-  inputs:
-    SonarQube: 'SonarQube'
-    scannerMode: 'MSBuild'
-    projectKey: '$(sonarQubeProject)'
-    projectName: '$(sonarQubeProject)'
-    extraProperties: |
-      sonar.login=$(SonarQubeUserName)
-      sonar.password=$(SonarQubePassword)
-      sonar.cs.opencover.reportsPaths="$(Build.SourcesDirectory)/TestResults/Coverage.opencover.xml"
-    # I'm passing in the SonarQube username and password because the token doesn't seem to be send to SonarQube
+
+#- task: SonarQubePrepare@4
+#  inputs:
+#    SonarQube: 'SonarQube'
+#    scannerMode: 'MSBuild'
+#    projectKey: '$(sonarQubeProject)'
+#    projectName: '$(sonarQubeProject)'
+#    extraProperties: |
+#      sonar.login=$(SonarQubeUserName)
+#      sonar.password=$(SonarQubePassword)
+#      sonar.cs.opencover.reportsPaths="$(Build.SourcesDirectory)/TestResults/Coverage.opencover.xml"
+#    # I'm passing in the SonarQube username and password because the token doesn't seem to be send to SonarQube
 
 - task: DotNetCoreCLI@2
   displayName: "Build Solution"
@@ -46,14 +46,14 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Run Tests'
-  inputs:
-    command: test
-    projects: '**/*[Tt]ests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
-
-- task: SonarQubeAnalyze@4
+#- task: DotNetCoreCLI@2
+#  displayName: 'Run Tests'
+#  inputs:
+#    command: test
+#    projects: '**/*[Tt]ests/*.csproj'
+#    arguments: '--configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
+#
+#- task: SonarQubeAnalyze@4
 
 - task: DotNetCoreCLI@2
   displayName: 'Create NuGet Package - Prerelease Version'
