@@ -56,11 +56,18 @@ steps:
 - task: SonarQubeAnalyze@4
 
 - task: DotNetCoreCLI@2
-  displayName: 'Pack NuGet Package - Release'
+  displayName: 'Create NuGet Package - Release Version'
   inputs:
     command: pack
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
     arguments: '--configuration $(buildConfiguration) --no-build'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Create NuGet Package - Prerelease Version'
+  inputs:
+    command: pack
+    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
+    arguments: '--configuration $(buildConfiguration) --no-build --version-suffix "$(Build.BuildNumber)"'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
