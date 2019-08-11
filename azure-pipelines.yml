@@ -17,12 +17,6 @@ steps:
   inputs:
     version: '2.2.401'
 
-- task: DotNetCoreCLI@2
-  displayName: "NuGet Restore"
-  inputs:
-    command: restore
-    projects: '**/*.csproj'
-
 - task: SonarQubePrepare@4
   inputs:
     SonarQube: 'SonarQube'
@@ -31,6 +25,12 @@ steps:
     projectName: 'FluentAssertions.ArgumentMatchers.Moq'
     projectVersion: '$(AssemblyVersion)'
     extraProperties: sonar.branch.name=$(Build.SourceBranchName)
+
+- task: DotNetCoreCLI@2
+  displayName: "NuGet Restore"
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: "Build Solution"
