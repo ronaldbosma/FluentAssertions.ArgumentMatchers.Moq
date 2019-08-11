@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Moq.ArgumentMatchers.FluentAssertions\Moq.ArgumentMatchers.FluentAssertions.csproj" />
+    <ProjectReference Include="..\FluentAssertions.ArgumentMatchers.Moq\FluentAssertions.ArgumentMatchers.Moq.csproj" />
   </ItemGroup>
 
 </Project>

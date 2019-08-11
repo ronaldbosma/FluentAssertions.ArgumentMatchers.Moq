@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
     <Version>0.1.0</Version>
-    <PackageId>RonaldBosma.Moq.ArgumentMatchers.FluentAssertions</PackageId>
+    <PackageId>FluentAssertions.ArgumentMatchers.Moq</PackageId>
     <PackageTags>netstandard;Moq;FluentAssertions</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Ronald Bosma</Authors>
@@ -11,7 +11,7 @@
     <RepositoryUrl>https://github.com/ronaldbosma/Moq.ArgumentMatchers.FluentAssertions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Moq.ArgumentMatchers.FluentAssertions.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>FluentAssertions.ArgumentMatchers.Moq.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
