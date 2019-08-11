@@ -56,10 +56,11 @@ steps:
 - task: SonarQubeAnalyze@4
 
 - task: DotNetCoreCLI@2
-  displayName: dotnet pack
+  displayName: 'Pack NuGet Package - Release
   inputs:
     command: pack
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
+    arguments: '--configuration $(buildConfiguration) --no-build'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
