@@ -17,23 +17,16 @@ steps:
   inputs:
     version: '2.2.401'
 
-#- task: SonarQubePrepare@4
-#  inputs:
-#    SonarQube: 'SonarQube'
-#    scannerMode: 'MSBuild'
-#    projectKey: 'FluentAssertions.ArgumentMatchers.Moq'
-#    projectName: 'FluentAssertions.ArgumentMatchers.Moq'
-#    projectVersion: '$(AssemblyVersion)'
-#    extraProperties: sonar.branch.name=$(Build.SourceBranchName)
-
 - task: SonarQubePrepare@4
   inputs:
     SonarQube: 'SonarQube'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'FluentAssertions.ArgumentMatchers.Moq'
-    cliProjectName: 'FluentAssertions.ArgumentMatchers.Moq'
-    cliSources: '.'
+    scannerMode: 'MSBuild'
+    projectKey: 'FluentAssertions.ArgumentMatchers.Moq'
+    projectName: 'FluentAssertions.ArgumentMatchers.Moq'
+    extraProperties: |
+      sonar.login=$(SonarQubeUserName)
+      sonar.password=$(SonarQubePassword)
+      sonar.branch.name=$(Build.SourceBranchName)
 
 - task: DotNetCoreCLI@2
   displayName: "NuGet Restore"
