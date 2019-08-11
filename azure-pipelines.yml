@@ -7,10 +7,10 @@ trigger:
 - master
 
 pool:
-  buildConfiguration: 'Release'
   vmImage: 'ubuntu-latest'
 
 variables:
+  buildConfiguration: 'Release'
   sonarQubeProject: 'FluentAssertions.ArgumentMatchers.Moq'
 
 steps:
