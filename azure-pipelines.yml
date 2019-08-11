@@ -7,6 +7,7 @@ trigger:
 - master
 
 pool:
+  buildConfiguration: 'Release'
   vmImage: 'ubuntu-latest'
 
 variables:
@@ -43,13 +44,15 @@ steps:
   inputs:
     command: build
     projects: '**/*.csproj'
+    configuration: '$(buildConfiguration)'
 
 #- task: DotNetCoreCLI@2
 #  displayName: 'Run Tests'
 #  inputs:
 #    command: test
 #    projects: '**/*[Tt]ests/*.csproj'
-#    arguments: '--configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
+#    configuration: '$(buildConfiguration)'
+#    arguments: '--logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
 #
 #- task: SonarQubeAnalyze@4
 
@@ -57,15 +60,17 @@ steps:
   displayName: 'Create NuGet Package - Prerelease Version'
   inputs:
     command: pack
-    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
-    nobuild: true
     arguments: '--version-suffix "$(Build.SourceVersion)"'
+    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
+    configuration: '$(buildConfiguration)'
+    nobuild: true
 
 #- task: DotNetCoreCLI@2
 #  displayName: 'Create NuGet Package - Release Version'
 #  inputs:
 #    command: pack
 #    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
+#    configuration: '$(buildConfiguration)'
 #    nobuild: true
 
 - task: PublishBuildArtifacts@1
