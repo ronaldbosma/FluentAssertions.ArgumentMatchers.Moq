@@ -17,6 +17,12 @@ steps:
   inputs:
     version: '2.2.401'
 
+- task: DotNetCoreCLI@2
+  displayName: "NuGet Restore"
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+    
 - task: SonarQubePrepare@4
   inputs:
     SonarQube: 'SonarQube'
@@ -27,12 +33,6 @@ steps:
       sonar.login=$(SonarQubeUserName)
       sonar.password=$(SonarQubePassword)
     # I'm passing in the SonarQube username and password because the token doesn't seem to be send to SonarQube
-
-- task: DotNetCoreCLI@2
-  displayName: "NuGet Restore"
-  inputs:
-    command: restore
-    projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: "Build Solution"
