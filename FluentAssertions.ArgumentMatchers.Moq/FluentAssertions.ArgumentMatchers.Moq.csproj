@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Ronald Bosma</Authors>
     <Description>Contains Moq argument matchers using FluentAssertions</Description>
-    <RepositoryUrl>https://github.com/ronaldbosma/Moq.ArgumentMatchers.FluentAssertions</RepositoryUrl>
+    <RepositoryUrl>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>FluentAssertions.ArgumentMatchers.Moq.snk</AssemblyOriginatorKeyFile>
