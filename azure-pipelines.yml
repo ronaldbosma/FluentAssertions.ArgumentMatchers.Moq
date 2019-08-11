@@ -46,7 +46,7 @@ steps:
   inputs:
     command: test
     projects: '**/*[Tt]ests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --logger trx'
+    arguments: '/p:CollectCoverage=true --configuration $(buildConfiguration) --logger trx'
 
 - task: SonarQubeAnalyze@4
 
