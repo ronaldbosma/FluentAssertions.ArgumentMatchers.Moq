@@ -26,7 +26,7 @@ steps:
     extraProperties: |
       sonar.login=$(SonarQubeUserName)
       sonar.password=$(SonarQubePassword)
-      sonar.branch.name=$(Build.SourceBranchName)
+#      sonar.branch.name=$(Build.SourceBranchName)  # this one unfortunately doesn't work for a developer edition
 
 - task: DotNetCoreCLI@2
   displayName: "NuGet Restore"
