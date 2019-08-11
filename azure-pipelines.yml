@@ -10,7 +10,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  buildConfiguration: 'Release'
   sonarQubeProject: 'FluentAssertions.ArgumentMatchers.Moq'
 
 steps:
@@ -40,11 +39,10 @@ steps:
 #    # I'm passing in the SonarQube username and password because the token doesn't seem to be send to SonarQube
 
 - task: DotNetCoreCLI@2
-  displayName: "Build Solution"
+  displayName: "Build Solution - $(BuildConfiguration)"
   inputs:
     command: build
     projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
 
 #- task: DotNetCoreCLI@2
 #  displayName: 'Run Tests'
@@ -60,14 +58,14 @@ steps:
   inputs:
     command: pack
     packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
-    arguments: '--configuration $(buildConfiguration) --no-build --version-suffix "$(Build.SourceVersion)"'
+    arguments: '--no-build --version-suffix "$(Build.SourceVersion)"'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Create NuGet Package - Release Version'
-  inputs:
-    command: pack
-    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
-    arguments: '--configuration $(buildConfiguration) --no-build'
+#- task: DotNetCoreCLI@2
+#  displayName: 'Create NuGet Package - Release Version'
+#  inputs:
+#    command: pack
+#    packDirectory: '$(Build.ArtifactStagingDirectory)/packages'
+#    arguments: '--no-build'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
