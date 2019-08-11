@@ -25,14 +25,12 @@ steps:
   inputs:
     version: '2.2.401'
 
-steps:
 - task: DotNetCoreCLI@2
   displayName: "NuGet Restore"
   inputs:
     command: restore
     projects: '$(projects)'
 
-steps:
 - task: DotNetCoreCLI@2
   displayName: "Build Solution"
   inputs:
