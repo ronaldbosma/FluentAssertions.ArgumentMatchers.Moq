@@ -10,8 +10,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  solutionName: FluentAssertions.ArgumentMatchers.Moq
-  projects: '**/*.csproj'
   buildConfiguration: 'Release'
 
 steps:
@@ -23,25 +21,26 @@ steps:
   displayName: "NuGet Restore"
   inputs:
     command: restore
-    projects: '$(projects)'
+    projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: "Build Solution"
   inputs:
     command: build
-    projects: '$(projects)'
-    arguments: '--configuration $(buildConfiguration)'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 
 - task: DotNetCoreCLI@2
   displayName: 'Run Tests'
   inputs:
     command: test
+    projects: '**/*[Tt]ests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --logger trx'
 
 - task: CopyFiles@2
   displayName: 'Copy NuGet Package'
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/$(solutionName)'
+    SourceFolder: '$(Build.ArtifactStagingDirectory)'
     Contents: '**\*.nupkg'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/Package'
     FlattenFolders: true
@@ -49,5 +48,5 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
-    artifactName: $(solutionName)
+    artifactName: 'FluentAssertions.ArgumentMatchers.Moq'
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/Package'
