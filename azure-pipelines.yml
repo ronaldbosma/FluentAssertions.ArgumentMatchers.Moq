@@ -11,6 +11,7 @@ pool:
 
 variables:
   solution: '**/*.sln'
+  solutionName: FluentAssertions.ArgumentMatchers.Moq
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
@@ -44,7 +45,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy NuGet Package'
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/Moq.ArgumentMatchers.FluentAssertions'
+    SourceFolder: '$(Build.SourcesDirectory)/$(solutionName)'
     Contents: '**\*.nupkg'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/Package'
     FlattenFolders: true
@@ -52,5 +53,5 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
-    artifactName: Moq.ArgumentMatchers.FluentAssertions
+    artifactName: $(solutionName)
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/Package'
