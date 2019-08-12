@@ -98,9 +98,9 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - script: echo my first deployment
-          
-#        - task: NuGetCommand@2
-#          inputs:
-#            command: push
-       
+    - task: NuGetCommand@2
+      inputs:
+        command: 'push'
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/packages/prereleases/*.nupkg'
+        nuGetFeedType: 'internal'
+        publishVstsFeed: '7fcfeab1-82fb-4a8b-b2a0-50384b5298b8'
