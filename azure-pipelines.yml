@@ -86,7 +86,7 @@ stages:
       inputs:
         artifactName: 'FluentAssertions.ArgumentMatchers.Moq'
         PathtoPublish: '$(Build.ArtifactStagingDirectory)/packages'
-
+        
 
 
 - stage: 'PublishPrereleaseNuGetPackage'
@@ -94,13 +94,16 @@ stages:
   dependsOn: 'Build'
   condition: succeeded()
   jobs:
-  - job:
+  - deployment:
     pool:
       vmImage: 'ubuntu-latest'
-    steps:
-    - task: NuGetCommand@2
-      inputs:
-        command: 'push'
-        packagesToPush: '$(Build.ArtifactStagingDirectory)/packages/prereleases/*.nupkg'
-        nuGetFeedType: 'internal'
-        publishVstsFeed: '7fcfeab1-82fb-4a8b-b2a0-50384b5298b8'
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+         - task: NuGetCommand@2
+           inputs:
+             command: 'push'
+             packagesToPush: '$(Build.ArtifactStagingDirectory)/packages/prereleases/*.nupkg'
+             nuGetFeedType: 'internal'
+             publishVstsFeed: '7fcfeab1-82fb-4a8b-b2a0-50384b5298b8'
