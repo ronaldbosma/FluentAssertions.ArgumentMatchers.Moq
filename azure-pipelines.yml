@@ -89,7 +89,8 @@ stages:
 
 
 
-- stage: 'Publish Prerelease NuGet Package'
+- stage: 'PublishPrereleaseNuGetPackage'
+  displayName: 'Publish Prerelease NuGet Package'
   dependsOn: 'Build'
   condition: succeeded()
   jobs:
