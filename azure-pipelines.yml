@@ -97,10 +97,11 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     strategy:
+      # default deployment strategy, more coming...
       runOnce:
         deploy:
-        steps:
-        - powershell: 'Write-Host "Test"'
+          steps:
+          - script: echo my first deployment
           
 #        - task: NuGetCommand@2
 #          inputs:
