@@ -98,13 +98,19 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     environment: NuGetPrerelease
+
     strategy:
      runOnce:
        deploy:
          steps:
+         - task: DownloadPipelineArtifact@2
+           inputs:
+             artifactName: 'FluentAssertions.ArgumentMatchers.Moq'
+
          - task: NuGetCommand@2
+           displayName: 'Push NuGet Package'
            inputs:
              command: 'push'
-             packagesToPush: '$(System.DefaultWorkingDirectory)/FluentAssertions.ArgumentMatchers.Moq/prereleases/*.nupkg'
+             packagesToPush: '$(Pipeline.Workspace)/FluentAssertions.ArgumentMatchers.Moq/prereleases/*.nupkg'
              nuGetFeedType: 'internal'
              publishVstsFeed: 'Test'
