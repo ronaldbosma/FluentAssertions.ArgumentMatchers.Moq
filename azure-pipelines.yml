@@ -35,6 +35,7 @@ stages:
         projects: '**/*.csproj'
     
     - task: SonarQubePrepare@4
+      enabled: false
       inputs:
         SonarQube: 'SonarQube'
         scannerMode: 'MSBuild'
@@ -55,12 +56,14 @@ stages:
 
     - task: DotNetCoreCLI@2
       displayName: 'Run Tests'
+      enabled: false
       inputs:
         command: test
         projects: '**/*[Tt]ests/*.csproj'
         arguments: '--configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
     
     - task: SonarQubeAnalyze@4
+      enabled: false
     
     - task: DotNetCoreCLI@2
       displayName: 'Create NuGet Package - Prerelease Version'
