@@ -98,7 +98,6 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     environment: NuGetPrerelease
-
     strategy:
      runOnce:
        deploy:
@@ -110,3 +109,27 @@ stages:
              packagesToPush: '$(Pipeline.Workspace)/FluentAssertions.ArgumentMatchers.Moq/prereleases/*.nupkg'
              nuGetFeedType: 'internal'
              publishVstsFeed: 'Test'
+             
+
+
+- stage: 'PublishReleaseNuGetPackage'
+  displayName: 'Publish Release NuGet Package'
+  dependsOn: 'PublishPrereleaseNuGetPackage'
+  condition: succeeded()
+  jobs:
+  - deployment:
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment: 'NuGet Release'
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+         - script: echo my first deployment
+#         - task: NuGetCommand@2
+#           displayName: 'Push NuGet Package'
+#           inputs:
+#             command: 'push'
+#             packagesToPush: '$(Pipeline.Workspace)/FluentAssertions.ArgumentMatchers.Moq/releases/*.nupkg'
+#             nuGetFeedType: 'internal'
+#             publishVstsFeed: 'Test'
