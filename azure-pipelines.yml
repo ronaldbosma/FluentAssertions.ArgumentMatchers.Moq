@@ -86,4 +86,23 @@ stages:
       inputs:
         artifactName: 'FluentAssertions.ArgumentMatchers.Moq'
         PathtoPublish: '$(Build.ArtifactStagingDirectory)/packages'
-    
+
+
+
+- stage: 'Publish Prerelease NuGet Package'
+  dependsOn: 'Build'
+  condition: succeeded()
+  jobs:
+  - job:
+    pool:
+      vmImage: 'ubuntu-latest'
+    strategy:
+      runOnce:
+        deploy:
+        steps:
+        - powershell: 'Write-Host "Test"'
+          
+#        - task: NuGetCommand@2
+#          inputs:
+#            command: push
+       
