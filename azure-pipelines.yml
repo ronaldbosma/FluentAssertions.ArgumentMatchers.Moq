@@ -103,10 +103,6 @@ stages:
      runOnce:
        deploy:
          steps:
-         - task: DownloadPipelineArtifact@2
-           inputs:
-             artifactName: 'FluentAssertions.ArgumentMatchers.Moq'
-
          - task: NuGetCommand@2
            displayName: 'Push NuGet Package'
            inputs:
