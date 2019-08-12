@@ -105,6 +105,6 @@ stages:
          - task: NuGetCommand@2
            inputs:
              command: 'push'
-             packagesToPush: 'FluentAssertions.ArgumentMatchers.Moq/prereleases/*.nupkg'
+             packagesToPush: '$(System.DefaultWorkingDirectory)/FluentAssertions.ArgumentMatchers.Moq/prereleases/*.nupkg'
              nuGetFeedType: 'internal'
              publishVstsFeed: 'Test'
