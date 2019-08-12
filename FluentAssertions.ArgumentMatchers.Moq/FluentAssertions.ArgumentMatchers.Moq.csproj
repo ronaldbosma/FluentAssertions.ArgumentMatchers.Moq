@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectGuid>20657E51-4177-43B9-BFA3-E19B039C3CFF</ProjectGuid>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <VersionPrefix>0.1.1</VersionPrefix>
+    <VersionPrefix>0.1.2</VersionPrefix>
     <PackageId>FluentAssertions.ArgumentMatchers.Moq</PackageId>
     <PackageTags>netstandard;Moq;FluentAssertions</PackageTags>
     <Authors>Ronald Bosma</Authors>
