@@ -97,7 +97,7 @@ stages:
   - deployment:
     pool:
       vmImage: 'ubuntu-latest'
-    environment: 'NuGet Prerelease
+    environment: 'NuGet Prerelease'
     strategy:
      runOnce:
        deploy:
