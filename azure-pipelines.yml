@@ -95,8 +95,7 @@ stages:
   - deployment:
     pool:
       vmImage: 'ubuntu-latest'
-    environment: 'NuGet Prerelease'
-      resourceName: 'FluentAssertions.ArgumentMatchers.Moq'
+    environment: 'NuGet Prerelease'.'FluentAssertions.ArgumentMatchers.Moq'
     strategy:
      runOnce:
        deploy:
