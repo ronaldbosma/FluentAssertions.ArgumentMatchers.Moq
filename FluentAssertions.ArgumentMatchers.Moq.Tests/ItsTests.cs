@@ -20,6 +20,12 @@ namespace FluentAssertions.ArgumentMatchers.Moq.Tests
         }
 
         [TestMethod]
+        public void MyTestMethod()
+        {
+            Assert.Fail("I wil fail");
+        }
+
+        [TestMethod]
         public void EquivalentTo_Matches_Same_Complex_Types()
         {
             var complexType = _fixture.Create<ComplexType>();
