@@ -95,18 +95,20 @@ stages:
   - deployment:
     pool:
       vmImage: 'ubuntu-latest'
-    environment: 'NuGet Prerelease'.'FluentAssertions.ArgumentMatchers.Moq'
-    strategy:
-     runOnce:
-       deploy:
-         steps:
-         - task: NuGetCommand@2
-           displayName: 'Push NuGet Package'
-           inputs:
-             command: 'push'
-             packagesToPush: '$(Pipeline.Workspace)/packages/prereleases/*.nupkg'
-             nuGetFeedType: 'internal'
-             publishVstsFeed: 'Test'
+    environment:
+      name: 'NuGet Prerelease'
+      resourceName: 'FluentAssertions.ArgumentMatchers.Moq'
+      strategy:
+       runOnce:
+         deploy:
+           steps:
+           - task: NuGetCommand@2
+             displayName: 'Push NuGet Package'
+             inputs:
+               command: 'push'
+               packagesToPush: '$(Pipeline.Workspace)/packages/prereleases/*.nupkg'
+               nuGetFeedType: 'internal'
+               publishVstsFeed: 'Test'
              
 
 
