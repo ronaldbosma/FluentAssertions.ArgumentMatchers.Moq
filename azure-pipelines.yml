@@ -82,7 +82,7 @@ stages:
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact'
       inputs:
-        artifactName: 'FluentAssertions.ArgumentMatchers.Moq'
+        artifactName: 'packages'
         PathtoPublish: '$(Build.ArtifactStagingDirectory)/packages'
         
 
@@ -104,7 +104,7 @@ stages:
            displayName: 'Push NuGet Package'
            inputs:
              command: 'push'
-             packagesToPush: '$(Pipeline.Workspace)/FluentAssertions.ArgumentMatchers.Moq/prereleases/*.nupkg'
+             packagesToPush: '$(Pipeline.Workspace)/packages/prereleases/*.nupkg'
              nuGetFeedType: 'internal'
              publishVstsFeed: 'Test'
              
@@ -127,6 +127,6 @@ stages:
            displayName: 'Push NuGet Package'
            inputs:
              command: 'push'
-             packagesToPush: '$(Pipeline.Workspace)/FluentAssertions.ArgumentMatchers.Moq/releases/*.nupkg'
+             packagesToPush: '$(Pipeline.Workspace)/packages/releases/*.nupkg'
              nuGetFeedType: 'internal'
              publishVstsFeed: 'Test'
