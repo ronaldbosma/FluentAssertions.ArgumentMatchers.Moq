@@ -77,7 +77,6 @@ stages:
         command: pack
         packDirectory: '$(Build.ArtifactStagingDirectory)/packages/releases'
         arguments: '--configuration $(buildConfiguration)'
-        nobuild: true
     
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact'
