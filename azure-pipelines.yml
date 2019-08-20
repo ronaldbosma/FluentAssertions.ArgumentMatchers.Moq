@@ -97,7 +97,13 @@ stages:
   - job:
     pool:
       vmImage: 'ubuntu-latest'
+
     steps:
+    - task: DownloadPipelineArtifact@2
+      displayName: 'Download NuGet package'
+      inputs:
+        artifactName: 'packages'
+
     - task: NuGetCommand@2
       displayName: 'Push NuGet Package'
       inputs:
