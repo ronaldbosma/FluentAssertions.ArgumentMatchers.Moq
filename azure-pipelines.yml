@@ -89,7 +89,7 @@ stages:
         publishVstsFeed: 'Test'
 
 
-
+        
 - stage: 'PublishReleaseNuGetPackage'
   displayName: 'Publish Release NuGet Package'
   dependsOn: 'PublishPrereleaseNuGetPackage'
@@ -98,7 +98,7 @@ stages:
   - deployment:
     pool:
       vmImage: 'ubuntu-latest'
-    environment: 'NuGet Release'
+    environment: 'nuget-org'
     strategy:
      runOnce:
        deploy:
@@ -108,5 +108,5 @@ stages:
            inputs:
              command: 'push'
              packagesToPush: '$(Pipeline.Workspace)/packages/releases/*.nupkg'
-             nuGetFeedType: 'internal'
-             publishVstsFeed: 'Test'
+             nuGetFeedType: 'external'
+             publishVstsFeed: 'NuGet'
