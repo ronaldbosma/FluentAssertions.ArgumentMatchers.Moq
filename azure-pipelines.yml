@@ -109,4 +109,4 @@ stages:
              command: 'push'
              packagesToPush: '$(Pipeline.Workspace)/packages/releases/*.nupkg'
              nuGetFeedType: 'external'
-             publishVstsFeed: 'NuGet'
+             publishFeedCredentials: 'NuGet'
