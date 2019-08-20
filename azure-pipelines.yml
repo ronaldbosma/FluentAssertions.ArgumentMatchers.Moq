@@ -92,21 +92,38 @@ stages:
   dependsOn: 'Build'
   condition: succeeded()
   jobs:
-  - deployment:
+  - job:
     pool:
       vmImage: 'ubuntu-latest'
-    environment: 'NuGet Prerelease'
-    strategy:
-     runOnce:
-       deploy:
-         steps:
-         - task: NuGetCommand@2
-           displayName: 'Push NuGet Package'
-           inputs:
-             command: 'push'
-             packagesToPush: '$(Pipeline.Workspace)/packages/prereleases/*.nupkg'
-             nuGetFeedType: 'internal'
-             publishVstsFeed: 'Test'
+    steps:
+    - task: NuGetCommand@2
+      displayName: 'Push NuGet Package'
+      inputs:
+        command: 'push'
+        packagesToPush: '$(Pipeline.Workspace)/packages/prereleases/*.nupkg'
+        nuGetFeedType: 'internal'
+        publishVstsFeed: 'Test'
+
+#- stage: 'PublishPrereleaseNuGetPackage'
+#  displayName: 'Publish Prerelease NuGet Package'
+#  dependsOn: 'Build'
+#  condition: succeeded()
+#  jobs:
+#  - deployment:
+#    pool:
+#      vmImage: 'ubuntu-latest'
+#    environment: 'NuGet Prerelease'
+#    strategy:
+#     runOnce:
+#       deploy:
+#         steps:
+#         - task: NuGetCommand@2
+#           displayName: 'Push NuGet Package'
+#           inputs:
+#             command: 'push'
+#             packagesToPush: '$(Pipeline.Workspace)/packages/prereleases/*.nupkg'
+#             nuGetFeedType: 'internal'
+#             publishVstsFeed: 'Test'
              
 
 
