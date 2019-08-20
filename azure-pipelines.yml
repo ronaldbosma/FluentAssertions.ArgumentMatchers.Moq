@@ -99,6 +99,8 @@ stages:
       vmImage: 'ubuntu-latest'
 
     steps:
+    - checkout: none
+
     - task: DownloadPipelineArtifact@2
       displayName: 'Download NuGet package'
       inputs:
