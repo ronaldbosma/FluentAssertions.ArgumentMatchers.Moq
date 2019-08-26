@@ -13,6 +13,7 @@
     <PackageId>FluentAssertions.ArgumentMatchers.Moq</PackageId>
     <Description>Contains Moq argument matchers using FluentAssertions</Description>
     <PackageTags>netstandard;Moq;FluentAssertions</PackageTags>
+    <PackageProjectUrl>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq/releases</PackageReleaseNotes>
     <Authors>Ronald Bosma</Authors>
     <RepositoryUrl>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq</RepositoryUrl>
