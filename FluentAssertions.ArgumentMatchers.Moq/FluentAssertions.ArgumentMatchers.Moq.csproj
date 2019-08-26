@@ -12,10 +12,11 @@
   <PropertyGroup>
     <PackageId>FluentAssertions.ArgumentMatchers.Moq</PackageId>
     <Description>Contains Moq argument matchers using FluentAssertions</Description>
+    <Authors>Ronald Bosma</Authors>
     <PackageTags>netstandard;Moq;FluentAssertions</PackageTags>
     <PackageProjectUrl>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq/releases</PackageReleaseNotes>
-    <Authors>Ronald Bosma</Authors>
+    <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
