@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/ronaldbosma/GitHub/_apis/build/status/ronaldbosma.FluentAssertions.ArgumentMatchers.Moq?branchName=master)](https://dev.azure.com/ronaldbosma/GitHub/_build/latest?definitionId=6&branchName=master)
+<!-- [![Build Status](https://dev.azure.com/ronaldbosma/GitHub/_apis/build/status/ronaldbosma.FluentAssertions.ArgumentMatchers.Moq?branchName=master)](https://dev.azure.com/ronaldbosma/GitHub/_build/latest?definitionId=6&branchName=master) -->
 ![Nuget](https://img.shields.io/nuget/dt/FluentAssertions.ArgumentMatchers.Moq)
 
 FluentAssertions.ArgumentMatchers.Moq
