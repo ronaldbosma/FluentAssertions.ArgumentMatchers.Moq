@@ -80,12 +80,9 @@ stages:
         buildProperties: 'VersionSuffix="$(Build.BuildNumber)"'
         packDirectory: '$(Build.ArtifactStagingDirectory)/packages/prereleases'
         arguments: '--configuration $(buildConfiguration)'
-    
-    - task: PublishBuildArtifacts@1
-      displayName: 'Publish Artifact'
-      inputs:
-        artifactName: 'packages'
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)/packages'
+        
+    - publish: '$(Build.ArtifactStagingDirectory)/packages'
+      artifact: 'packages'
         
 
 
@@ -101,8 +98,8 @@ stages:
     steps:
     - checkout: none
 
-    - task: DownloadPipelineArtifact@2
-      displayName: 'Download NuGet package'
+    - download: current
+      artifact: 'packages'
 
     - task: NuGetCommand@2
       displayName: 'Push NuGet Package'
