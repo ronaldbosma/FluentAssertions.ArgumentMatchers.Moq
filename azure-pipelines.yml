@@ -136,10 +136,12 @@ stages:
 
 
 
-- stage: 'TestPublishedPrereleasePackage'
-  displayName: 'Test Published Prerelease Package with Dependencies'
-  dependsOn: 'PublishPrereleaseNuGetPackage'
-  condition: succeeded()
+- stage: 'TestPublishedPackage'
+  displayName: 'Test Published Package with Dependencies'
+  dependsOn:
+  - PublishPrereleaseNuGetPackage
+  - PublishReleaseNuGetPackage
+  condition: or(succeeded('PublishPrereleaseNuGetPackage'), succeeded('PublishReleaseNuGetPackage'))
   jobs:
   - job:
     pool:
