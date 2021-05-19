@@ -33,7 +33,7 @@ stages:
       displayName: "NuGet Restore"
       inputs:
         command: restore
-        projects: '**/*.csproj'
+        projects: 'src/**/*.csproj'
     
     - task: SonarQubePrepare@4
       enabled: false
@@ -52,15 +52,15 @@ stages:
       displayName: "Build Solution"
       inputs:
         command: build
-        projects: '**/*.csproj'
-        arguments: '--configuration $(buildConfiguration)'
+        projects: 'src/**/*.csproj'
+        arguments: '--configuration $(buildConfiguration) --no-restore'
 
     - task: DotNetCoreCLI@2
       displayName: 'Run Tests'
       inputs:
         command: test
-        projects: '**/*[Tt]ests/*.csproj'
-        arguments: '--configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
+        projects: 'src/**/*[Tt]ests/*.csproj'
+        arguments: '--configuration $(buildConfiguration) --no-restore --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
     
     - task: SonarQubeAnalyze@4
       enabled: false
@@ -69,6 +69,7 @@ stages:
       displayName: 'Create NuGet Package - Release Version'
       inputs:
         command: pack
+        searchPatternPack: 'src/FluentAssertions.ArgumentMatchers.Moq/FluentAssertions.ArgumentMatchers.Moq.csproj'
         packDirectory: '$(Build.ArtifactStagingDirectory)/packages/releases'
         arguments: '--configuration $(buildConfiguration)'
         nobuild: true
@@ -78,6 +79,7 @@ stages:
       inputs:
         command: pack
         buildProperties: 'VersionSuffix="$(Build.BuildNumber)"'
+        searchPatternPack: 'src/FluentAssertions.ArgumentMatchers.Moq/FluentAssertions.ArgumentMatchers.Moq.csproj'
         packDirectory: '$(Build.ArtifactStagingDirectory)/packages/prereleases'
         arguments: '--configuration $(buildConfiguration)'
         
