@@ -138,6 +138,9 @@ stages:
 
 - stage: 'TestPublishedPackage'
   displayName: 'Test Published Package with Dependencies'
+  dependsOn:
+  - PublishPrereleaseNuGetPackage
+  - PublishReleaseNuGetPackage
   condition: succeeded()
   jobs:
   - job:
