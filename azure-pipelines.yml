@@ -133,3 +133,46 @@ stages:
              packagesToPush: '$(Pipeline.Workspace)/packages/releases/*.nupkg'
              nuGetFeedType: 'external'
              publishFeedCredentials: 'NuGet'
+
+
+
+- stage: 'TestPublishedPackage'
+  displayName: 'Test Published Package with Dependencies'
+  condition: succeeded()
+  jobs:
+  - job:
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    workspace:
+      clean: all
+
+    steps:
+    - task: UseDotNet@2
+      displayName: 'Use .NET Core sdk'
+      inputs:
+        packageType: sdk
+        version: 3.1.x
+        installationPath: $(Agent.ToolsDirectory)/dotnet
+
+    - task: DotNetCoreCLI@2
+      displayName: "NuGet Restore"
+      inputs:
+        command: restore
+        projects: 'tests/**/*.csproj'
+        feedsToUse: config
+        nugetConfigPath: 'tests/NuGet.config'
+
+    - task: DotNetCoreCLI@2
+      displayName: "Build Solution"
+      inputs:
+        command: build
+        projects: 'tests/**/*.csproj'
+        arguments: '--no-restore'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Run Tests'
+      inputs:
+        command: test
+        projects: 'tests/**/*.csproj'
+        arguments: '--no-restore'
