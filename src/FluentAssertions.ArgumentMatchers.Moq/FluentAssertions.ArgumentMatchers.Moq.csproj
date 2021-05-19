@@ -17,6 +17,7 @@
     <PackageProjectUrl>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq/releases</PackageReleaseNotes>
     <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
@@ -26,4 +27,7 @@
     <PackageReference Include="Moq" Version="[4.7,5)" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 </Project>
