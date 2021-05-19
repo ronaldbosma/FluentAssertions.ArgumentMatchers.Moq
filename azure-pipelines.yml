@@ -118,21 +118,23 @@ stages:
   dependsOn: 'Build'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   jobs:
-  - deployment:
+  - job:
     pool:
       vmImage: 'ubuntu-latest'
-    environment: 'nuget-org'
-    strategy:
-     runOnce:
-       deploy:
-         steps:
-         - task: NuGetCommand@2
-           displayName: 'Push NuGet Package'
-           inputs:
-             command: 'push'
-             packagesToPush: '$(Pipeline.Workspace)/packages/releases/*.nupkg'
-             nuGetFeedType: 'external'
-             publishFeedCredentials: 'NuGet'
+
+    steps:
+    - checkout: none
+
+    - download: current
+      artifact: 'packages'
+      
+    - task: NuGetCommand@2
+      displayName: 'Push NuGet Package'
+      inputs:
+        command: 'push'
+        packagesToPush: '$(Pipeline.Workspace)/packages/releases/*.nupkg'
+        nuGetFeedType: 'external'
+        publishFeedCredentials: 'NuGet'
 
 
 
