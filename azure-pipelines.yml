@@ -26,14 +26,14 @@ stages:
       displayName: 'Use .NET Core sdk'
       inputs:
         packageType: sdk
-        version: 2.2.x
+        version: 3.1.x
         installationPath: $(Agent.ToolsDirectory)/dotnet
     
     - task: DotNetCoreCLI@2
       displayName: "NuGet Restore"
       inputs:
         command: restore
-        projects: '**/*.csproj'
+        projects: 'src/**/*.csproj'
     
     - task: SonarQubePrepare@4
       enabled: false
@@ -52,15 +52,15 @@ stages:
       displayName: "Build Solution"
       inputs:
         command: build
-        projects: '**/*.csproj'
-        arguments: '--configuration $(buildConfiguration)'
+        projects: 'src/**/*.csproj'
+        arguments: '--configuration $(buildConfiguration) --no-restore'
 
     - task: DotNetCoreCLI@2
       displayName: 'Run Tests'
       inputs:
         command: test
-        projects: '**/*[Tt]ests/*.csproj'
-        arguments: '--configuration $(buildConfiguration) --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
+        projects: 'src/**/*[Tt]ests/*.csproj'
+        arguments: '--configuration $(buildConfiguration) --no-restore --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="$(Build.SourcesDirectory)/TestResults/Coverage"'
     
     - task: SonarQubeAnalyze@4
       enabled: false
@@ -69,6 +69,7 @@ stages:
       displayName: 'Create NuGet Package - Release Version'
       inputs:
         command: pack
+        searchPatternPack: 'src/FluentAssertions.ArgumentMatchers.Moq/FluentAssertions.ArgumentMatchers.Moq.csproj'
         packDirectory: '$(Build.ArtifactStagingDirectory)/packages/releases'
         arguments: '--configuration $(buildConfiguration)'
         nobuild: true
@@ -78,6 +79,7 @@ stages:
       inputs:
         command: pack
         buildProperties: 'VersionSuffix="$(Build.BuildNumber)"'
+        searchPatternPack: 'src/FluentAssertions.ArgumentMatchers.Moq/FluentAssertions.ArgumentMatchers.Moq.csproj'
         packDirectory: '$(Build.ArtifactStagingDirectory)/packages/prereleases'
         arguments: '--configuration $(buildConfiguration)'
         
@@ -89,7 +91,7 @@ stages:
 - stage: 'PublishPrereleaseNuGetPackage'
   displayName: 'Publish Prerelease NuGet Package'
   dependsOn: 'Build'
-  condition: succeeded()
+  condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
   jobs:
   - job:
     pool:
@@ -113,8 +115,8 @@ stages:
         
 - stage: 'PublishReleaseNuGetPackage'
   displayName: 'Publish Release NuGet Package'
-  dependsOn: 'PublishPrereleaseNuGetPackage'
-  condition: succeeded()
+  dependsOn: 'Build'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   jobs:
   - deployment:
     pool:
@@ -131,3 +133,49 @@ stages:
              packagesToPush: '$(Pipeline.Workspace)/packages/releases/*.nupkg'
              nuGetFeedType: 'external'
              publishFeedCredentials: 'NuGet'
+
+
+
+- stage: 'TestPublishedPackage'
+  displayName: 'Test Published Package with Dependencies'
+  dependsOn:
+  - PublishPrereleaseNuGetPackage
+  - PublishReleaseNuGetPackage
+  condition: or(succeeded('PublishPrereleaseNuGetPackage'), succeeded('PublishReleaseNuGetPackage'))
+  jobs:
+  - job:
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    workspace:
+      clean: all
+
+    steps:
+    - task: UseDotNet@2
+      displayName: 'Use .NET Core sdk'
+      inputs:
+        packageType: sdk
+        version: 3.1.x
+        installationPath: $(Agent.ToolsDirectory)/dotnet
+
+    - task: DotNetCoreCLI@2
+      displayName: "NuGet Restore"
+      inputs:
+        command: restore
+        projects: 'tests/**/*.csproj'
+        feedsToUse: config
+        nugetConfigPath: 'tests/NuGet.config'
+
+    - task: DotNetCoreCLI@2
+      displayName: "Build Solution"
+      inputs:
+        command: build
+        projects: 'tests/**/*.csproj'
+        arguments: '--no-restore'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Run Tests'
+      inputs:
+        command: test
+        projects: 'tests/**/*.csproj'
+        arguments: '--no-restore'

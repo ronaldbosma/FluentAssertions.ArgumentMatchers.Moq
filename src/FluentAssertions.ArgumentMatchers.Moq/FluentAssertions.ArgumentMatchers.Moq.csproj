@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectGuid>20657E51-4177-43B9-BFA3-E19B039C3CFF</ProjectGuid>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <VersionPrefix>0.1.3</VersionPrefix>
+    <VersionPrefix>1.0.0</VersionPrefix>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>FluentAssertions.ArgumentMatchers.Moq.snk</AssemblyOriginatorKeyFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -17,6 +17,7 @@
     <PackageProjectUrl>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq/releases</PackageReleaseNotes>
     <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/ronaldbosma/FluentAssertions.ArgumentMatchers.Moq</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
@@ -26,4 +27,7 @@
     <PackageReference Include="Moq" Version="[4.7,5)" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 </Project>
