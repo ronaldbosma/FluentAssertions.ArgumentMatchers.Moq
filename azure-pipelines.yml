@@ -91,7 +91,7 @@ stages:
 - stage: 'PublishPrereleaseNuGetPackage'
   displayName: 'Publish Prerelease NuGet Package'
   dependsOn: 'Build'
-  condition: succeeded()
+  condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
   jobs:
   - job:
     pool:
@@ -115,7 +115,7 @@ stages:
         
 - stage: 'PublishReleaseNuGetPackage'
   displayName: 'Publish Release NuGet Package'
-  dependsOn: 'PublishPrereleaseNuGetPackage'
+  dependsOn: 'Build'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   jobs:
   - deployment:
