@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{60A86F2F-66E5-46FE-90FB-89FC9E03C122}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentAssertions.ArgumentMatchers.Moq", "FluentAssertions.ArgumentMatchers.Moq\FluentAssertions.ArgumentMatchers.Moq.csproj", "{20657E51-4177-43B9-BFA3-E19B039C3CFF}"
 EndProject
