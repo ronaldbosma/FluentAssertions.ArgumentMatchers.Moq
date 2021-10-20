@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.FluentAssertions511.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.FluentAssertions5Latest.Moq4Latest", "Tests.FluentAssertions5Latest.Moq4Latest\Tests.FluentAssertions5Latest.Moq4Latest.csproj", "{B346A46E-9520-4608-A291-3F67252193F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.FluentAssertions6Latest.Moq4Latest", "Tests.FluentAssertions6Latest.Moq4Latest\Tests.FluentAssertions6Latest.Moq4Latest.csproj", "{37A4B3C7-F21A-478B-A722-627B6924EADD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B346A46E-9520-4608-A291-3F67252193F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B346A46E-9520-4608-A291-3F67252193F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B346A46E-9520-4608-A291-3F67252193F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37A4B3C7-F21A-478B-A722-627B6924EADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37A4B3C7-F21A-478B-A722-627B6924EADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37A4B3C7-F21A-478B-A722-627B6924EADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37A4B3C7-F21A-478B-A722-627B6924EADD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
