@@ -18,3 +18,7 @@ _mock.Verify(m => m.DoSomething(Its.EquivalentTo(
     options => options.Excluding(c => c.SomeProperty)
 )));
 ```
+
+## Nico
+
+I was here.
