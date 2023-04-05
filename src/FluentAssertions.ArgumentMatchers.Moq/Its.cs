@@ -47,7 +47,7 @@ namespace FluentAssertions.ArgumentMatchers.Moq
         {
             try
             {
-                actual.Should().BeEquivalentTo(expected, config);
+                actual.Should().BeEquivalentTo(expected, config); //TODO: add breakpoint
                 return true;
             }
             catch (Exception ex)
