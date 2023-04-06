@@ -36,13 +36,13 @@ namespace FluentAssertions.ArgumentMatchers.Moq
             Func<EquivalencyAssertionOptions<TValue>, EquivalencyAssertionOptions<TValue>> config)
         {
             return Match.Create(
-                actual => AreEquivalent(actual, expected, config),
+                (actual, _) => AreEquivalent(actual, expected, config),
                 //this second parameter is used in error messages to display what the expression is
                 () => EquivalentTo(expected)
             );
         }
 
-        private static bool AreEquivalent<TValue>(TValue actual, TValue expected,
+        private static bool AreEquivalent<TValue>(object actual, TValue expected,
             Func<EquivalencyAssertionOptions<TValue>, EquivalencyAssertionOptions<TValue>> config)
         {
             try

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectGuid>20657E51-4177-43B9-BFA3-E19B039C3CFF</ProjectGuid>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionPrefix>3.0.0</VersionPrefix>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>FluentAssertions.ArgumentMatchers.Moq.snk</AssemblyOriginatorKeyFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -24,7 +24,7 @@
   
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="[6,7)" />
-    <PackageReference Include="Moq" Version="[4.7,5)" />
+    <PackageReference Include="Moq" Version="[4.13,5)" />
   </ItemGroup>
 
   <ItemGroup>

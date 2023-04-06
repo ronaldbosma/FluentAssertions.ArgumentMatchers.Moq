@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoFixture;
 using FluentAssertions.ArgumentMatchers.Moq.Tests.TestTools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -98,6 +99,16 @@ namespace FluentAssertions.ArgumentMatchers.Moq.Tests
 
             Action verify = () => _mock.Verify(m => m.DoSomething(Its.EquivalentTo(expectedComplexType)));
             verify.Should().Throw<MockException>();
+        }
+
+        [TestMethod]
+        public void EquivalentTo_Matches_Two_Different_Types_With_Same_Data()
+        {
+            var list = new List<ComplexType> { _fixture.Create<ComplexType>() };
+
+            _mock.Object.DoSomethingWithCollection(list.ToArray());
+
+            _mock.Verify(x => x.DoSomethingWithCollection(Its.EquivalentTo(list)));
         }
     }
 }
