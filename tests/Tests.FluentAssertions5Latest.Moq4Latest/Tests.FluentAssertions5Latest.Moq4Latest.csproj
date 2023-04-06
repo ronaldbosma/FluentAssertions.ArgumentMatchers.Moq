@@ -6,7 +6,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="FluentAssertions.ArgumentMatchers.Moq" Version="1.*-*" />
+    <PackageReference Include="FluentAssertions.ArgumentMatchers.Moq" Version="2.1-*" />
     <PackageReference Include="FluentAssertions" Version="5.*" />
     <PackageReference Include="Moq" Version="4.*" />
   </ItemGroup>
