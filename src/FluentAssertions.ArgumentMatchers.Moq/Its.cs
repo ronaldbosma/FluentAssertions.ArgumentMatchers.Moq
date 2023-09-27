@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using FluentAssertions.Equivalency;
 using Moq;
@@ -41,6 +42,15 @@ namespace FluentAssertions.ArgumentMatchers.Moq
                 () => EquivalentTo(expected)
             );
         }
+        public static IEnumerable<TValue> EquivalentTo<TValue>(IEnumerable<TValue> expected,
+            Func<EquivalencyAssertionOptions<TValue>, EquivalencyAssertionOptions<TValue>> config)
+        {
+            return Match.Create(
+                (actual, _) => AreEquivalent(actual, expected, config),
+                //this second parameter is used in error messages to display what the expression is
+                () => EquivalentTo(expected)
+            );
+        }
 
         private static bool AreEquivalent<TValue>(object actual, TValue expected,
             Func<EquivalencyAssertionOptions<TValue>, EquivalencyAssertionOptions<TValue>> config)
@@ -48,6 +58,25 @@ namespace FluentAssertions.ArgumentMatchers.Moq
             try
             {
                 actual.Should().BeEquivalentTo(expected, config);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Although catching an Exception to return false is a bit ugly
+                // the great advantage is that we can log the error message of FluentAssertions.
+                // This makes it easier to troubleshoot why a Mock was not called with the expected parameters.
+
+                Trace.WriteLine($"Actual and expected of type {typeof(TValue)} are not equal. Details:");
+                Trace.WriteLine(ex.ToString());
+                return false;
+            }
+        }
+        private static bool AreEquivalent<TValue>(object actual, IEnumerable<TValue> expected,
+            Func<EquivalencyAssertionOptions<TValue>, EquivalencyAssertionOptions<TValue>> config)
+        {
+            try
+            {
+                actual.Should().BeAssignableTo<IEnumerable<TValue>>().Which.Should().BeEquivalentTo(expected, config);
                 return true;
             }
             catch (Exception ex)
