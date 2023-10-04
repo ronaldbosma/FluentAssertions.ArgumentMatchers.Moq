@@ -110,5 +110,22 @@ namespace FluentAssertions.ArgumentMatchers.Moq.Tests
 
             _mock.Verify(x => x.DoSomethingWithCollection(Its.EquivalentTo(list)));
         }
+
+        [TestMethod]
+        public void EquivalentTo_Matches_Two_Collections_Child_Property_Has_Different_Value_But_Its_Ignored()
+        {
+            var complexType = _fixture.Create<ComplexType>();
+
+            var expectedComplexType = complexType.Copy();
+            expectedComplexType.ComplexTypeProperty.IntProperty++;
+
+            var list = new List<ComplexType> { _fixture.Create<ComplexType>() };
+
+            _mock.Object.DoSomethingWithCollection(list.ToArray());
+         
+            _mock.Verify(x => x.DoSomethingWithCollection(Its.EquivalentTo(
+                list,
+                options => options.Excluding(c => c.ComplexTypeProperty.IntProperty))));
+        }
     }
 }
