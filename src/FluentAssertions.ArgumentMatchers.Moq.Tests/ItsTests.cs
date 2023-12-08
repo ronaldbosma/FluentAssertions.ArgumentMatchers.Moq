@@ -112,20 +112,39 @@ namespace FluentAssertions.ArgumentMatchers.Moq.Tests
         }
 
         [TestMethod]
-        public void EquivalentTo_Matches_Two_Collections_Child_Property_Has_Different_Value_But_Its_Ignored()
+        public void EquivalentTo_Does_Not_Match_Two_Collections_When_Child_Property_Has_Different_Value()
         {
             var complexType = _fixture.Create<ComplexType>();
+            var list = new List<ComplexType> { complexType };
 
             var expectedComplexType = complexType.Copy();
+            // Change a property of the expected object to make it different from the actual object
             expectedComplexType.ComplexTypeProperty.IntProperty++;
+            var expectedList = new List<ComplexType> { expectedComplexType };
 
-            var list = new List<ComplexType> { _fixture.Create<ComplexType>() };
+            _mock.Object.DoSomethingWithCollection(list);
 
-            _mock.Object.DoSomethingWithCollection(list.ToArray());
-         
-            _mock.Verify(x => x.DoSomethingWithCollection(Its.EquivalentTo(
-                list,
-                options => options.Excluding(c => c.ComplexTypeProperty.IntProperty))));
+            Action verify = () => _mock.Verify(m => m.DoSomethingWithCollection(Its.EquivalentTo(expectedList)));
+            verify.Should().Throw<MockException>();
+        }
+
+        [TestMethod]
+        public void EquivalentTo_Matches_Two_Collections_When_Child_Property_Has_Different_Value_But_Its_Ignored()
+        {
+            var complexType = _fixture.Create<ComplexType>();
+            var list = new List<ComplexType> { complexType };
+
+            var expectedComplexType = complexType.Copy();
+            // Change a property of the expected object to make it different from the actual object
+            expectedComplexType.ComplexTypeProperty.IntProperty++;
+            var expectedList = new List<ComplexType> { expectedComplexType };
+
+            _mock.Object.DoSomethingWithCollection(list);
+
+            _mock.Verify(m => m.DoSomethingWithCollection(Its.EquivalentTo(
+                expectedList,
+                options => options.Excluding(c => c.ComplexTypeProperty.IntProperty)
+            )));
         }
     }
 }
