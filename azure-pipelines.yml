@@ -127,7 +127,7 @@ stages:
 
     - download: current
       artifact: 'packages'
-      
+
     - task: NuGetCommand@2
       displayName: 'Push NuGet Package'
       inputs:

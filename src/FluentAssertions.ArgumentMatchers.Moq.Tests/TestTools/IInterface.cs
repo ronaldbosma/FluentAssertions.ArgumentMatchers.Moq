@@ -6,6 +6,6 @@ namespace FluentAssertions.ArgumentMatchers.Moq.Tests.TestTools
     {
         void DoSomething(ComplexType complexType);
         
-        void DoSomethingWithCollection(IReadOnlyCollection<ComplexType> complexType);
+        void DoSomethingWithCollection(IEnumerable<ComplexType> complexType);
     }
 }
