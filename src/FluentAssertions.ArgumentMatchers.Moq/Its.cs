@@ -42,27 +42,6 @@ namespace FluentAssertions.ArgumentMatchers.Moq
                 () => EquivalentTo(expected)
             );
         }
-        
-        /// <summary>
-        /// Matches any value that is equivalent to <paramref name="expected"/>.
-        /// </summary>
-        /// <typeparam name="TValue">Type of the argument to check.</typeparam>
-        /// <param name="expected">The expected object to match.</param>
-        /// <param name="config">
-        /// A reference to the <seealso cref="EquivalencyAssertionOptions{TValue}"/>
-        /// configuration object that can be used to influence the way the object graphs
-        /// are compared. You can also provide an alternative instance of the <seealso cref="EquivalencyAssertionOptions{TValue}"/> class.
-        /// The global defaults are determined by the <seealso cref="AssertionOptions"/> class.
-        /// </param>
-        public static IEnumerable<TValue> EquivalentTo<TValue>(IEnumerable<TValue> expected,
-            Func<EquivalencyAssertionOptions<TValue>, EquivalencyAssertionOptions<TValue>> config)
-        {
-            return Match.Create(
-                (actual, _) => AreEquivalent(actual, expected, config),
-                //this second parameter is used in error messages to display what the expression is
-                () => EquivalentTo(expected)
-            );
-        }
 
         private static bool AreEquivalent<TValue>(object actual, TValue expected,
             Func<EquivalencyAssertionOptions<TValue>, EquivalencyAssertionOptions<TValue>> config)
@@ -83,6 +62,28 @@ namespace FluentAssertions.ArgumentMatchers.Moq
                 return false;
             }
         }
+
+        /// <summary>
+        /// Matches any enumerable value that is equivalent to <paramref name="expected"/>.
+        /// </summary>
+        /// <typeparam name="TValue">Type of the items of the enumerable to check.</typeparam>
+        /// <param name="expected">The expected enumerable to match.</param>
+        /// <param name="config">
+        /// A reference to the <seealso cref="EquivalencyAssertionOptions{TValue}"/>
+        /// configuration object that can be used to influence the way the object graphs
+        /// are compared. You can also provide an alternative instance of the <seealso cref="EquivalencyAssertionOptions{TValue}"/> class.
+        /// The global defaults are determined by the <seealso cref="AssertionOptions"/> class.
+        /// </param>
+        public static IEnumerable<TValue> EquivalentTo<TValue>(IEnumerable<TValue> expected,
+            Func<EquivalencyAssertionOptions<TValue>, EquivalencyAssertionOptions<TValue>> config)
+        {
+            return Match.Create(
+                (actual, _) => AreEquivalent(actual, expected, config),
+                //this second parameter is used in error messages to display what the expression is
+                () => EquivalentTo(expected)
+            );
+        }
+
         private static bool AreEquivalent<TValue>(object actual, IEnumerable<TValue> expected,
             Func<EquivalencyAssertionOptions<TValue>, EquivalencyAssertionOptions<TValue>> config)
         {
@@ -97,7 +98,7 @@ namespace FluentAssertions.ArgumentMatchers.Moq
                 // the great advantage is that we can log the error message of FluentAssertions.
                 // This makes it easier to troubleshoot why a Mock was not called with the expected parameters.
 
-                Trace.WriteLine($"Actual and expected of type {typeof(TValue)} are not equal. Details:");
+                Trace.WriteLine($"Actual and expected of type {typeof(IEnumerable<TValue>)} are not equal. Details:");
                 Trace.WriteLine(ex.ToString());
                 return false;
             }
