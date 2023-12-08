@@ -128,6 +128,11 @@ stages:
     - download: current
       artifact: 'packages'
 
+    - task: NuGetAuthenticate@1
+      displayName: 'NuGet Authenticate'
+      inputs:
+        nuGetServiceConnections: 'NuGet'
+
     - task: NuGetCommand@2
       displayName: 'Push NuGet Package'
       inputs:
