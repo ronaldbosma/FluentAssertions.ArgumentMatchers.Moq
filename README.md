@@ -1,3 +1,8 @@
+> [!IMPORTANT]  
+> See [ArgumentMatchers.Moq.AwesomeAssertions](https://www.nuget.org/packages/ArgumentMatchers.Moq.AwesomeAssertions) for a version with AwesomeAssertions support. It has the same API but uses AwesomeAssertions instead of FluentAssertions under the hood. 
+
+===
+
 ![Nuget](https://img.shields.io/nuget/dt/FluentAssertions.ArgumentMatchers.Moq)
 
 FluentAssertions.ArgumentMatchers.Moq
