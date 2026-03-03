@@ -3,8 +3,8 @@
 FluentAssertions.ArgumentMatchers.Moq
 ===
 
-> [!IMPORTANT]  
-> See [ArgumentMatchers.Moq.AwesomeAssertions](https://www.nuget.org/packages/ArgumentMatchers.Moq.AwesomeAssertions) for a version with AwesomeAssertions support. It has the same API but uses AwesomeAssertions instead of FluentAssertions under the hood. 
+> [!TIP]  
+> See [ArgumentMatchers.Moq.AwesomeAssertions](https://www.nuget.org/packages/ArgumentMatchers.Moq.AwesomeAssertions) for a version with **AwesomeAssertions** support. It has the same API but uses AwesomeAssertions instead of FluentAssertions under the hood. 
 
 The [FluentAssertions.ArgumentMatchers.Moq NuGet package](https://www.nuget.org/packages/FluentAssertions.ArgumentMatchers.Moq/) provides a simple way to use Moq in combination with FluentAssertions to compare complex objects.
 
